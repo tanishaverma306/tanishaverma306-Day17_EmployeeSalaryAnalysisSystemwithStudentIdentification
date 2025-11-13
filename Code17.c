@@ -1,0 +1,99 @@
+#include <stdio.h>
+int main() {
+    int employees, Salary[10];
+    char Sec;
+    char name[100];
+    char Rno[20];
+    printf("Enter your Name: ");
+    scanf("%99s", name);  
+    printf("Enter your Registration number: ");
+    scanf("%19s", Rno);
+    printf("Enter your Section: ");
+    scanf(" %c", &Sec);
+    printf("Enter number of employees:\n");
+    scanf("%d", &employees);
+    for( int i = 0; i < employees; i++) {
+        printf("Enter the salaries \n");
+        scanf("%d", &Salary[i]);
+        printf("Salary of employee %d is %d\n", i+1, Salary[i]);
+    }
+    printf("======Menu======\n");
+    printf("1. Display All salaries\n");
+    printf("2.Display Total and Average Salary\n");
+    printf("3. Display Highest and Lowest Salary\n");
+    printf("4. Count Above/Below Average\n");
+    printf("5. Display Sortes Salaries\n");
+    printf("6. Exit\n");
+    printf("Enter your choice: ");
+    int choice;
+    scanf("%d", &choice);
+    
+    if (choice==1) {
+        printf("All salaries are:\n");
+        for(int i=0; i<employees; i++) {
+            printf("Salary of employee %d is %d\n", i+1, Salary[i]);
+        }}
+    else if (choice==2) {
+        int total=0;
+        for(int i=0; i<employees; i++) {
+            total += Salary[i];
+        }
+        float average = (float)total / employees;
+        printf("Total Salary: %d\n", total);
+        printf("Average Salary: %f\n", average);
+    }
+    else if (choice==3) {
+        int highest = Salary[0];
+        int lowest = Salary[0];
+        for(int i=1; i<employees; i++) {
+            if(Salary[i] > highest) {
+                highest = Salary[i];
+            }
+            if(Salary[i] < lowest) {
+                lowest = Salary[i];
+            }
+        }
+        printf("Highest Salary: %d\n", highest);
+        printf("Lowest Salary: %d\n", lowest);
+    }
+    else if (choice==4) {
+        int total=0;
+        for(int i=0; i<employees; i++) {
+            total += Salary[i];
+        }
+        float average = (float)total / employees;
+        int above=0, below=0;
+        for(int i=0; i<employees; i++) {
+            if(Salary[i] > average) {
+                above++;
+            } else {
+                below++;
+            }
+        }
+        printf("Number of employees above average: %d\n", above);
+        printf("Number of employees below average: %d\n", below);
+    }
+    else if (choice==5) {
+        for(int i=0; i<employees-1; i++) {
+            for(int j=0; j<employees-i-1; j++) {
+                if(Salary[j] > Salary[j+1]) {
+                    int temp = Salary[j];
+                    Salary[j] = Salary[j+1];
+                    Salary[j+1] = temp;
+                }
+            }
+        }
+        printf("Sorted Salaries:\n");
+        for(int i=0; i<employees; i++) {
+            printf("Salary of employee %d is %d\n", i+1, Salary[i]);
+        }
+    }
+    else if (choice==6) {
+        printf("Exiting the program.\n");
+    }
+    else {
+        printf("Invalid choice. Please try again.\n");
+    }
+    return 0;
+    
+}
